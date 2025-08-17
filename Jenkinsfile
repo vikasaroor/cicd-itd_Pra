@@ -1,7 +1,14 @@
 @Library('checkout_shared') _
+
+
+
 pipeline {
 
     agent any 
+
+parameters {
+  booleanParam description: 'If sonar plugin', name: 'with-sonar-plugin'
+}
 
     stages{
         stage('getCode'){
@@ -18,6 +25,9 @@ pipeline {
         }
 
         stage('sonar scan') {
+          when {
+            expression ( params.with-sonar-plugin == true )
+          }  
             steps{
         script {
             scannerHome = tool 'my-sonar-plug'
