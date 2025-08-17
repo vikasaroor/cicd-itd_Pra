@@ -65,7 +65,7 @@ parameters {
                     trivy fs . --format template --template "@/tmp/html.tpl" -o report.html
                 '''
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', 
-                    keepAll: false, reportDir: '', reportFiles: 'report.html', 
+                    keepAll: false, reportDir: '.', reportFiles: 'report.html', 
                     reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
  
                 
