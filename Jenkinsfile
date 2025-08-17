@@ -51,7 +51,7 @@ parameters {
 
     post {
         always{
-            cleanWS()
+            cleanWs()
         }
     }
 }
