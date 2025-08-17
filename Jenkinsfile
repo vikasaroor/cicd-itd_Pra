@@ -8,8 +8,11 @@ pipeline {
 
 
     options {
-        buildDiscarder(logRotator(    
-            numToKeepStr: '6',      
+        buildDiscarder(logRotator(
+            daysToKeepStr: '7',      // Keep builds for 7 days
+            numToKeepStr: '10',      // Or keep last 10 builds
+            artifactDaysToKeepStr: '5',
+            artifactNumToKeepStr: '2'
         ))
     }    
 
@@ -64,6 +67,14 @@ parameters {
                 '''
             }
         }
+
+
+        // stage{
+        //     steps{
+
+
+        //     }
+        // }
         
     }
 
