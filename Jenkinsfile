@@ -55,11 +55,11 @@ parameters {
         }
 
 
-        stage('trivy fs check'){
-            steps{
+        // stage('trivy fs check'){
+        //     steps{
 
-            }
-        }
+        //     }
+        // }
         
     }
 
