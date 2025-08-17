@@ -23,7 +23,7 @@ pipeline {
             scannerHome = tool 'my-sonar-plug'
         }
         withSonarQubeEnv('sonar-remote') {
-          sh "${scannerHome}/bin/sonar-scanner"
+          sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=node_backend"  
         }
         }
             
