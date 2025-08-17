@@ -93,7 +93,7 @@ parameters {
                     
                 // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                       def customImage = docker.build("vikasaroor/myitd:${env.BUILD_NUMBER}")
+                       def customImage = docker.build("vikasaroor/myitd:${env.BUILD_NUMBER} . ")
 
                         customImage.push()
                  
