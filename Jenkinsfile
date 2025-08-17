@@ -12,7 +12,7 @@ pipeline {
                         cred = 'github-cred'
                         branch = 'main'
                     }
-                    newcheckout('mygitcheckout')
+                    newcheckout(mygitcheckout)
                 }
             }
         }

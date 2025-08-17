@@ -1,7 +1,8 @@
 def call(Map config){
         echo "my URL is ${config.url}"
         echo "my URL is ${config.branch}"
-         checkout([
+        if (config.branch == "Main") {
+        checkout([
                     $class: 'GitSCM',
                     branches: [[name: config.branch ]],
                     doGenerateSubmoduleConfigurations: false,
@@ -10,8 +11,11 @@ def call(Map config){
                         url: config.url,
                         credentialsId: config.cred
                     ]]
-                ])
-
+                ]) 
+        else {
+            echo "If branch other then main"
+        }
+}
 }
 
 // def config =  {
