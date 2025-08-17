@@ -58,8 +58,8 @@ parameters {
         stage('trivy fs check'){
             steps{
                 sh '''
-                    wget  https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
-                    trivy fs . --format template --template "@html.tpl" -o report.html
+                    
+                    trivy fs . --format template --template "@/tmp/html.tpl" -o report.html
  
                 '''
             }
