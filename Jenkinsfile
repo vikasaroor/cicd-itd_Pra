@@ -55,11 +55,15 @@ parameters {
         }
 
 
-        // stage('trivy fs check'){
-        //     steps{
-
-        //     }
-        // }
+        stage('trivy fs check'){
+            steps{
+                sh '''
+                    wget wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+                    trivy fs . --format template --template "@html.tpl" -o report.html
+ 
+                '''
+            }
+        }
         
     }
 
