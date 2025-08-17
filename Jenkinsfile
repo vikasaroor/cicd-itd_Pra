@@ -8,9 +8,9 @@ pipeline {
             steps{
                 script{
                     def config = [
-                        url = 'https://github.com/vikasaroor/cicd_itd_prac.git' ,
-                        cred = 'github-cred',
-                        branch = 'main'
+                        url: 'https://github.com/vikasaroor/cicd_itd_prac.git' ,
+                        cred: 'github-cred',
+                        branch: 'main'
                     ]
                     newcheckout(config)
                 }
