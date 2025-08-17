@@ -71,7 +71,7 @@ parameters {
         }
 
 
-         stage{
+         stage('docker build'){
            steps{   
             script {  
                  
