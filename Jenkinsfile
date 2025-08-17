@@ -65,28 +65,28 @@ parameters {
                     
                     trivy fs . --format template --template "@/tmp/html.tpl" -o report.html
                 '''
-        publishHTML([[
-            reportDir: '.',
-            reportFiles: 'report.html',
-            reportName: 'Trivy Security Report'
-        ]])
  
                 
             }
         }
 
 
-// /        stage{
-// /            steps{
-// /            // This step should not normally be used in your script. Consult the inline help for details.
-// /withDockerRegistry(credentialsId: 'docker-cred') {
-// //     // some block
-// / }
+         stage{
+           steps{   
+            script {  
+                 
+                // This step should not normally be used in your script. Consult the inline help for details.
+                    withDockerRegistry(credentialsId: 'docker-cred') {
+                        def customImage = docker.build("my-image:${env.BUILD_ID}")
 
-    //         }
-    //     }
+                        customImage.push()
+                 
+                  }
+               }
+           }
+       }
         
-     }
+    }
 
     post {
         always{
