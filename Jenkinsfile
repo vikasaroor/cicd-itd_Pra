@@ -91,7 +91,7 @@ parameters {
                         branch: 'main']
                 newcheckout(config)
 
-                def imagename =  vikasaroor/myitd:${env.BUILD_NUMBER}
+                
                     
                 // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-cred') {
