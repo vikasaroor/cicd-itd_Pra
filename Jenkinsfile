@@ -19,10 +19,12 @@ pipeline {
 
         stage('sonar scan') {
             steps{
+                script {
             withSonarQubeEnv('sonar-server') {
                
                  sh "sonar-scanner"
           }
+            }
         }
             
         }
