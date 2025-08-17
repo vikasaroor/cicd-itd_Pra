@@ -90,10 +90,15 @@ parameters {
                         cred: 'github-cred',
                         branch: 'main']
                 newcheckout(config)
+
+                def imagename =  vikasaroor/myitd:${env.BUILD_NUMBER}
                     
                 // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                       def customImage = docker.build("vikasaroor/myitd:${env.BUILD_NUMBER} -f ./node_backend-main/Dockerfile .  ")
+                                   def customImage = docker.build(
+                    "vikasaroor/myitd:${env.BUILD_NUMBER}",
+                    "-f ./node_backend-main/Dockerfile ./node_backend-main"
+                )
 
                         customImage.push()
                  
