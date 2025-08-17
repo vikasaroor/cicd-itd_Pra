@@ -63,18 +63,25 @@ parameters {
                 sh '''
                     
                     trivy fs . --format template --template "@/tmp/html.tpl" -o report.html
+
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', 
+                    keepAll: false, reportDir: '', reportFiles: 'report.html', 
+                    reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
  
                 '''
             }
         }
 
 
-        // stage{
-        //     steps{
+// /        stage{
+// /            steps{
+// /            // This step should not normally be used in your script. Consult the inline help for details.
+// /withDockerRegistry(credentialsId: 'docker-cred') {
+// //     // some block
+// / }
 
-
-        //     }
-        // }
+            }
+        }
         
     }
 
