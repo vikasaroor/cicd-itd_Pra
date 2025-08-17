@@ -19,12 +19,12 @@ pipeline {
 
         stage('sonar scan') {
             steps{
-                script {
-            withSonarQubeEnv('sonar-remote') {
-               
-                 sh "sonar-scanner"
-          }
-            }
+        script {
+            scannerHome = tool 'my-sonar-plug'
+        }
+        withSonarQubeEnv('sonar-remote') {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
         }
             
         }
