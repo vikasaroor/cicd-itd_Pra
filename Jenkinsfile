@@ -6,6 +6,13 @@ pipeline {
 
     agent any 
 
+
+    options {
+        buildDiscarder(logRotator(    
+            numToKeepStr: '6',      
+        ))
+    }    
+
 parameters {
   booleanParam description: 'If sonar plugin', name: 'with_sonar_plugin', defaultValue: true
 }
@@ -44,6 +51,13 @@ parameters {
               timeout(time: 10, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
                 }
+            }
+        }
+
+
+        stage('trivy fs check'){
+            steps{
+
             }
         }
         
