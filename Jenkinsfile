@@ -33,7 +33,7 @@ parameters {
                   scannerHome = tool 'my-sonar-plug'
                 }
                 withSonarQubeEnv('sonar-remote') {
-                sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=node_backend"  
+                sh "${scannerHome}/bin/sonar-scanner -D sonar.sources=. -D sonar.projectKey=node_backend"  
                 }
             }
         }
@@ -45,6 +45,13 @@ parameters {
                 waitForQualityGate abortPipeline: true
                 }
             }
+        }
+        
+    }
+
+    post {
+        always{
+            cleanWS()
         }
     }
 }
