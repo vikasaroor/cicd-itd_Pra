@@ -26,7 +26,7 @@ parameters {
 
         stage('sonar scan') {
               when {
-                  expression { return params.with_sonar_plugin == true }
+                  expression { return params.with_sonar_plugin == 'true' }
                 }  
             steps{
                 script {
