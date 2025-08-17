@@ -7,7 +7,7 @@ pipeline {
     agent any 
 
 parameters {
-  booleanParam description: 'If sonar plugin', name: 'with-sonar-plugin', default: true
+  booleanParam description: 'If sonar plugin', name: 'with-sonar-plugin', default: 'true'
 }
 
     stages{
