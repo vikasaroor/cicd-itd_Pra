@@ -7,7 +7,7 @@ pipeline {
     agent any 
 
 parameters {
-  booleanParam description: 'If sonar plugin', name: 'with_sonar_plugin', default: 'true'
+  booleanParam description: 'If sonar plugin', name: 'with_sonar_plugin', defaultValue: true
 }
 
     stages{
@@ -26,7 +26,7 @@ parameters {
 
         stage('sonar scan') {
               when {
-                  expression { return params.with_sonar_plugin == 'true' }
+                  expression { return params.with_sonar_plugin == true }
                 }  
             steps{
                 script {
