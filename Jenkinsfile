@@ -20,7 +20,7 @@ pipeline {
         stage('sonar scan') {
             steps{
                 script {
-            withSonarQubeEnv('sonar-server') {
+            withSonarQubeEnv('my-sonar-plug') {
                
                  sh "sonar-scanner"
           }
