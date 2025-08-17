@@ -51,6 +51,9 @@ parameters {
 
 
         stage('sonar-qualitygates'){
+                when {
+                  expression { return params.with_sonar_plugin == true }
+                }  
             steps{
               timeout(time: 10, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
@@ -60,6 +63,10 @@ parameters {
 
 
         stage('trivy fs check'){
+
+             when {
+                  expression { return params.with_sonar_plugin == true }
+                }  
             steps{
                 sh '''
                     
@@ -77,6 +84,12 @@ parameters {
                 }
            steps{   
             script {  
+
+                def config = [
+                        url: 'https://github.com/vikasaroor/cicd-itd_Prac.git' ,
+                        cred: 'github-cred',
+                        branch: 'main']
+                newcheckout(config)
                     
                 // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-cred') {
