@@ -7,7 +7,7 @@ pipeline {
     agent any 
 
 parameters {
-  booleanParam description: 'If sonar plugin', name: 'with-sonar-plugin'
+  booleanParam description: 'If sonar plugin', name: 'with-sonar-plugin', default: true
 }
 
     stages{
@@ -26,17 +26,25 @@ parameters {
 
         stage('sonar scan') {
               when {
-        expression { return params.with_sonar_plugin == true }
-             }  
+                  expression { return params.with_sonar_plugin == true }
+                }  
             steps{
-        script {
-            scannerHome = tool 'my-sonar-plug'
+                script {
+                  scannerHome = tool 'my-sonar-plug'
+                }
+                withSonarQubeEnv('sonar-remote') {
+                sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=node_backend"  
+                }
+            }
         }
-        withSonarQubeEnv('sonar-remote') {
-          sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=node_backend"  
-        }
-        }
-            
+
+
+        stage('sonar-qualitygates'){
+            steps{
+              timeout(time: 10, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+                }
+            }
         }
     }
 }
