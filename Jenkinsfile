@@ -16,5 +16,13 @@ pipeline {
                 }
             }
         }
+
+        stage('sonar scan') {
+            withSonarQubeEnv('sonar-server') {
+               
+                 sh "sonar-scanner"
+          }
+            
+        }
     }
 }
