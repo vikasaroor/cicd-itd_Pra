@@ -88,9 +88,5 @@ parameters {
         
     }
 
-    post {
-        always{
-            cleanWs()
-        }
-    }
+ 
 }
