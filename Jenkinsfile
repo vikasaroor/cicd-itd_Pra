@@ -7,14 +7,15 @@ pipeline {
     agent any 
 
 
-    options {
-        buildDiscarder(logRotator(
-            daysToKeepStr: '7',      // Keep builds for 7 days
-            numToKeepStr: '10',      // Or keep last 10 builds
-            artifactDaysToKeepStr: '5',
-            artifactNumToKeepStr: '2'
-        ))
-    }    
+options {
+    buildDiscarder(logRotator(
+        
+        numToKeepStr: '10',
+        
+        artifactNumToKeepStr: '2'
+    ))
+}
+ 
 
 parameters {
   booleanParam description: 'If sonar plugin', name: 'with_sonar_plugin', defaultValue: true
