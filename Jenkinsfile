@@ -74,7 +74,10 @@ parameters {
          stage('docker build'){
            steps{   
             script {  
-                 
+                def dockerHome =  tool 'My-Docker'
+
+                env.PATH = "${env.PATH}:${dockerHome}"
+                
                 // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-cred') {
                         def customImage = docker.build("my-image:${env.BUILD_ID}")
