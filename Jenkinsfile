@@ -7,11 +7,11 @@ pipeline {
         stage('getCode'){
             steps{
                 script{
-                    def mygitcheckout = {
-                        url = 'https://github.com/vikasaroor/cicd_itd_prac.git'
-                        cred = 'github-cred'
+                    def mygitcheckout = [
+                        url = 'https://github.com/vikasaroor/cicd_itd_prac.git',
+                        cred = 'github-cred',
                         branch = 'main'
-                    }
+                    ]
                     newcheckout(mygitcheckout)
                 }
             }
