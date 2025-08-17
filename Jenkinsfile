@@ -25,9 +25,9 @@ parameters {
         }
 
         stage('sonar scan') {
-          when {
-            expression ( params.with-sonar-plugin == true )
-          }  
+              when {
+        expression { return params.with_sonar_plugin == true }
+             }  
             steps{
         script {
             scannerHome = tool 'my-sonar-plug'
