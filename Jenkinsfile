@@ -66,14 +66,15 @@ parameters {
 
              when {
                   expression { return params.with_sonar_plugin == true }
-                }  
+                } 
+
             steps{
                 sh '''
+                    
                     
                     trivy fs . --format template --template "@/tmp/html.tpl" -o report.html
                 '''
  
-                
             }
         }
 
@@ -98,21 +99,18 @@ parameters {
                                    def customImage = docker.build(
                     "vikasaroor/myitd:${env.BUILD_NUMBER}",
                     "-f ./node_backend-main/Dockerfile ./node_backend-main"
-                )
+                       )
                 sh """
                     wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
  
-                    trivy image  --severity HIGH,CRITICAL --format template \
+                    trivy image  --severity  --format template \
                     --template "@./html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
                  """
                         customImage.push()
-                 
-                  }
-               }
-           }
-       }
-        
+                   
+                    }
+                }
+            }
+        }
     }
-
- 
 }
