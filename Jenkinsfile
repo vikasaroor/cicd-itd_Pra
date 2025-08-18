@@ -99,7 +99,10 @@ parameters {
                     "vikasaroor/myitd:${env.BUILD_NUMBER}",
                     "-f ./node_backend-main/Dockerfile ./node_backend-main"
                 )
-
+                sh """
+                    trivy image --exit-code 1 --severity HIGH,CRITICAL --format template \
+                    --template "@/tmp/html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
+                 """
                         customImage.push()
                  
                   }
