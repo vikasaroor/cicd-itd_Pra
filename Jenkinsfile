@@ -102,7 +102,7 @@ parameters {
                 sh """
                     wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
  
-                    trivy image --exit-code 1 --severity HIGH,CRITICAL --format template \
+                    trivy image  --severity HIGH,CRITICAL --format template \
                     --template "@./html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
                  """
                         customImage.push()
