@@ -103,7 +103,7 @@ parameters {
                 sh """
                     wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
  
-                    trivy image  --severity  --format template \
+                    trivy image   --format template \
                     --template "@./html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
                  """
                         customImage.push()
