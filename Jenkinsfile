@@ -100,8 +100,10 @@ parameters {
                     "-f ./node_backend-main/Dockerfile ./node_backend-main"
                 )
                 sh """
+                    wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+ 
                     trivy image --exit-code 1 --severity HIGH,CRITICAL --format template \
-                    --template "@/tmp/html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
+                    --template "@./html.tpl" -o report.html vikasaroor/myitd:${env.BUILD_NUMBER}
                  """
                         customImage.push()
                  
